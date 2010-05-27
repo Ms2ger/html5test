@@ -1297,12 +1297,13 @@
 					
 					var element = document.createElement('mark');
 					document.body.appendChild(element);
+					var color;
 
 					group.setItem({
 						title: 	'<code>mark</code> element', 
 						url:	'http://www.w3.org/TR/html5/text-level-semantics.html#the-mark-element',
 						passed:	typeof HTMLElement != 'undefined' && element instanceof HTMLElement && (color = this.getStyle(element, 'background-color')) && (color == 'yellow' || color == 'rgb(255, 255, 0)'), 
-						value: 	1
+						value: 	2
 					});
 
 					document.body.removeChild(element);
@@ -1311,30 +1312,19 @@
 					document.body.appendChild(container);
 					container.innerHTML = "<ruby id='ruby'><rp id='rp'></rp><rt id='rt'></rt></ruby>";
 					var element = document.getElementById('ruby');
+					var hasRuby = element && typeof HTMLElement != 'undefined' && element instanceof HTMLElement && this.getStyle(element, 'display') == 'ruby';
+
+					element = document.getElementById('rt');
+					var hasRt = element && typeof HTMLElement != 'undefined' && element instanceof HTMLElement && this.getStyle(element, 'display') == 'ruby-text';
+
+					element = document.getElementById('rp');
+					var hasRp = element && typeof HTMLElement != 'undefined' && element instanceof HTMLElement && this.getStyle(element, 'display') == 'hidden';
 
 					group.setItem({
-						title: 	'<code>ruby</code> element', 
+						title: 	'<code>ruby</code>, <code>rt</code> and <code>rp</code> elements', 
 						url:	'http://www.w3.org/TR/html5/text-level-semantics.html#the-ruby-element',
-						passed:	element && typeof HTMLElement != 'undefined' && element instanceof HTMLElement && this.getStyle(element, 'display') == 'ruby', 
-						value: 	1
-					});
-
-					var element = document.getElementById('rt');
-
-					group.setItem({
-						title: 	'<code>rt</code> element', 
-						url:	'http://www.w3.org/TR/html5/text-level-semantics.html#the-rt-element',
-						passed:	element && typeof HTMLElement != 'undefined' && element instanceof HTMLElement && this.getStyle(element, 'display') == 'ruby-text', 
-						value: 	1
-					});
-
-					var element = document.getElementById('rp');
-
-					group.setItem({
-						title: 	'<code>rp</code> element', 
-						url:	'http://www.w3.org/TR/html5/text-level-semantics.html#the-rp-element',
-						passed:	element && typeof HTMLElement != 'undefined' && element instanceof HTMLElement && this.getStyle(element, 'display') == 'hidden', 
-						value: 	1
+						passed:	hasRuby && hasRt && hasRp,
+						value: 	2
 					});
 					
 					document.body.removeChild(container);
