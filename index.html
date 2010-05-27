@@ -920,15 +920,17 @@
 					var e = document.createElement('div');
 					e.innerHTML = '<svg></svg>';
 					var passed = e.firstChild && "namespaceURI" in e.firstChild && e.firstChild.namespaceURI == 'http://www.w3.org/2000/svg';
+					var bonus = e.firstChild && window['SVGSVGElement'] && e.firstChild instanceof window['SVGSVGElement'];
 					
 					this.section.setItem({
 						title: 	'SVG in <code>text/html</code>', 
 						url:	'http://www.w3.org/TR/html5/the-canvas-element.html#svg-0',
-						passed:	passed, 
-						bonus: 	passed ? 1 : 0
+						passed:	passed ? 1 : 0,
+						bonus:	bonus ? 1 : 0,
+						value:	5
 					});
 				},
-				
+
 				t6: function() {
 					var e = document.createElement('div');
 					e.innerHTML = '<math></math>';
@@ -937,8 +939,8 @@
 					this.section.setItem({
 						title: 	'MathML in <code>text/html</code>', 
 						url:	'http://www.w3.org/TR/html5/the-canvas-element.html#math',
-						passed:	passed, 
-						bonus: 	passed ? 1 : 0
+						passed:	passed,
+						value:	5
 					});
 				}
 			};
