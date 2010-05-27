@@ -483,10 +483,10 @@
 				initialize: function(e, t, c) {					
 					var r = new results(e, t);
 					
-					for (g in this.suites) {
+					for (var g in this.suites) {
 						r.createSuite(this.suites[g].title);
 											
-						for (s in this.suites[g].sections) {
+						for (var s in this.suites[g].sections) {
 							new (this.suites[g].sections[s])(r);
 						}
 					}
@@ -1225,7 +1225,7 @@
 				    else if (document.defaultView && document.defaultView.getComputedStyle) {
 				        name = name.replace(/([A-Z])/g, "-$1");
 				        name = name.toLowerCase();
-				        s = document.defaultView.getComputedStyle(elem, "");
+				        var s = document.defaultView.getComputedStyle(elem, "");
 				        return s && s.getPropertyValue(name);
 				    } else {
 				        return null;
@@ -1811,15 +1811,15 @@
 			function startTest() {
 				var t = new test('results', 'total', function(r) {
 				
-					_bTestResults = {
+					window['_bTestResults'] = {
 					  'Total score': r.score,
 					  'Bonus points': r.bonus
 					};
 					
-					for (s in r.sections) {
+					for (var s in r.sections) {
 						_bTestResults[r.sections[s].name] = r.sections[s].value;
 						
-						for (i in r.sections[s].items) {
+						for (var i in r.sections[s].items) {
 							_bTestResults[r.sections[s].items[i].name] = r.sections[s].items[i].passed ? 1 : 0;
 						}
 					}
